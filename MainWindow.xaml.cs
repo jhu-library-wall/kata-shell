@@ -41,21 +41,12 @@ namespace KataShell
         {
             InitializeComponent();
 
-            string appDataFilename = "apps.xml";
-            string appDataPath = appDataFilename;
-            //check for a local copy of this file (for debugging purposes) else use a hard coded path copy
-            if (!File.Exists(appDataPath))
-                appDataPath = "D:/" + appDataFilename;
-            //Didn't find that, check for an app data copy
-            if (!File.Exists(appDataPath))
-                appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/KataShell/" + appDataFilename;
-            if (!File.Exists(appDataPath))
-            {
-                MessageBox.Show("Unable to load app list.", "App List Error");
-            }
-
+            string appDataFile = "apps.xml";
+            //check for a local copy of this file (for debugging purposes) else use an app data copy
+            if(!File.Exists(appDataFile))
+                appDataFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/KataShell/" + appDataFile;
             var xs = new XmlSerializer(typeof(List<AppData>));
-            var reader = new StreamReader(appDataPath);
+            var reader = new StreamReader(appDataFile);
             Apps = (List<AppData>)xs.Deserialize(reader);
 
             this.DataContext = Apps;
