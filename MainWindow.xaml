@@ -80,17 +80,19 @@
         </ControlTemplate>
     </Window.Resources>
 
-    <Grid>
-        <Grid.Background>
+    <DockPanel>
+        <DockPanel.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0"/>
                 <GradientStop Color="#FF0C086E" Offset="1"/>
             </LinearGradientBrush>
-        </Grid.Background>
+        </DockPanel.Background>
+
+        <TextBlock DockPanel.Dock="Top" Foreground="White" FontSize="30"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" FontFamily="Verdana" Text="{Binding Message}" />
 
         <ScrollViewer PanningMode="Both" VerticalScrollBarVisibility="Hidden" Template="{DynamicResource ScrollTemplate}">
             <!-- The items control that will connect to all of the apps in the list -->
-            <ItemsControl ItemsSource="{Binding}">
+            <ItemsControl ItemsSource="{Binding Apps}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <!-- Simple wrap panel to keep everything flowing in squares -->
@@ -100,15 +102,15 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!-- Border isn't visible right now, useful for checking bounds/layout though -->
-                        <Border Width="540" Height="540" BorderBrush="Transparent" BorderThickness="4">
+                        <Border Width="400" Height="400" BorderBrush="Transparent" BorderThickness="4">
                             <Button Margin="20 20 20 20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="AppButton_Click" Style="{DynamicResource LaunchButtonStyle}" Tag="{Binding}">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Height="80" Foreground="White" FontSize="60" HorizontalAlignment="Center" FontFamily="Verdana" Text="{Binding Name}" />
-                                    <Image Height="400" Grid.Row="1" Source="{Binding ImageFile}"/>
+                                    <TextBlock Grid.Row="0" Height="80" Foreground="White" FontSize="50" HorizontalAlignment="Center" FontFamily="Verdana" Text="{Binding Name}" />
+                                    <Image Height="300" Grid.Row="1" Source="{Binding ImageFile}"/>
                                 </Grid>
                             </Button>
                         </Border>
@@ -116,5 +118,5 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-    </Grid>
+    </DockPanel>
 </Window>

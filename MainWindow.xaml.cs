@@ -1,18 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.IO;
@@ -27,14 +16,19 @@ namespace KataShell
         public string Filename { get; set; }
         public string Arguments { get; set; }
     }
+    
+    public class WallConfig
+    {
+        public string Message { get; set; }
+        public AppData[] Apps { get; set; }
+    }
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<AppData> Apps { get; } = new List<AppData>();
-
+        WallConfig wallConfig;
         Process _activeApp;
 
         public MainWindow()
@@ -45,11 +39,11 @@ namespace KataShell
             //check for a local copy of this file (for debugging purposes) else use an app data copy
             if(!File.Exists(appDataFile))
                 appDataFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/KataShell/" + appDataFile;
-            var xs = new XmlSerializer(typeof(List<AppData>));
+            var xs = new XmlSerializer(typeof(WallConfig));
             var reader = new StreamReader(appDataFile);
-            Apps = (List<AppData>)xs.Deserialize(reader);
 
-            this.DataContext = Apps;
+            wallConfig = (WallConfig)xs.Deserialize(reader);
+            this.DataContext = wallConfig;
         }
 
         private void KillActiveApp()
