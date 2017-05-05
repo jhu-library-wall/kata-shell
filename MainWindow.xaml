@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KataShell"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" Closing="Window_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
+        Title="MainWindow" Height="3840" Width="2160" Closing="Window_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
