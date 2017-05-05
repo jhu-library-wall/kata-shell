@@ -88,7 +88,7 @@
             </LinearGradientBrush>
         </DockPanel.Background>
 
-        <TextBlock DockPanel.Dock="Top" Foreground="White" FontSize="30"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" FontFamily="Verdana" Text="{Binding Message}" />
+        <TextBlock DockPanel.Dock="Top" Foreground="White" FontSize="50"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" FontFamily="Verdana" Text="{Binding Message}" />
 
         <ScrollViewer PanningMode="Both" VerticalScrollBarVisibility="Hidden" Template="{DynamicResource ScrollTemplate}">
             <!-- The items control that will connect to all of the apps in the list -->
@@ -102,7 +102,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!-- Border isn't visible right now, useful for checking bounds/layout though -->
-                        <Border Width="400" Height="400" BorderBrush="Transparent" BorderThickness="4">
+                        <Border Width="700" Height="700" BorderBrush="Transparent" BorderThickness="4">
                             <Button Margin="20 20 20 20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="AppButton_Click" Style="{DynamicResource LaunchButtonStyle}" Tag="{Binding}">
                                 <Grid>
                                     <Grid.RowDefinitions>
